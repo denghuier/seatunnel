@@ -27,6 +27,7 @@ import lombok.Getter;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.apache.seatunnel.connectors.seatunnel.hbase.config.HbaseConfig.ENCODING;
 import static org.apache.seatunnel.connectors.seatunnel.hbase.config.HbaseConfig.FAMILY_NAME;
@@ -43,6 +44,8 @@ import static org.apache.seatunnel.connectors.seatunnel.hbase.config.HbaseConfig
 @Builder
 @Getter
 public class HbaseParameters implements Serializable {
+
+    private  Map<String,String> hosts;
 
     private String zookeeperQuorum;
 
@@ -68,8 +71,14 @@ public class HbaseParameters implements Serializable {
 
     public static HbaseParameters buildWithConfig(Config pluginConfig) {
         HbaseParametersBuilder builder = HbaseParameters.builder();
-
+        Map<String,String> hosts=pluginConfig.getConfig(HbaseConfig.HOSTS.key()).entrySet().stream()
+                .collect(
+                        Collectors.toMap(
+                                Map.Entry::getKey,
+                                entry -> String.valueOf(entry.getValue().unwrapped()),
+                                (v1, v2) -> v2));
         // required parameters
+        builder.hosts(hosts);
         builder.zookeeperQuorum(pluginConfig.getString(ZOOKEEPER_QUORUM.key()));
         builder.table(pluginConfig.getString(TABLE.key()));
         builder.rowkeyColumns(pluginConfig.getStringList(ROWKEY_COLUMNS.key()));

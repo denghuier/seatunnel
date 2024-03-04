@@ -31,6 +31,7 @@
     <properties>
         <spark.scope>compile</spark.scope>
         <spark.2.4.0.jackson.version>2.6.7</spark.2.4.0.jackson.version>
+        <mysql.version>8.0.27</mysql.version>
     </properties>
     <dependencies>
         <dependency>
@@ -62,6 +63,18 @@
         <dependency>
             <groupId>org.apache.seatunnel</groupId>
             <artifactId>connector-console</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.seatunnel</groupId>
+            <artifactId>connector-jdbc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.seatunnel</groupId>
+            <artifactId>connector-hbase</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!--   seatunnel connectors   -->
@@ -105,6 +118,13 @@
             <groupId>net.jpountz.lz4</groupId>
             <artifactId>lz4</artifactId>
             <version>1.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+
         </dependency>
     </dependencies>
 </project>

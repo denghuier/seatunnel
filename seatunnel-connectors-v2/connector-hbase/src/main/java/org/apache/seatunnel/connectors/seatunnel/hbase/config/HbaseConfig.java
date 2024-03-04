@@ -27,6 +27,11 @@ public class HbaseConfig {
 
     private static final Integer DEFAULT_BUFFER_SIZE = 8 * 1024 * 1024;
 
+    public static final Option<Map<String, String>> HOSTS =
+            Options.key("hosts")
+                    .mapType()
+                    .noDefaultValue()
+                    .withDescription("hosts ");
     public static final Option<String> ZOOKEEPER_QUORUM =
             Options.key("zookeeper_quorum")
                     .stringType()

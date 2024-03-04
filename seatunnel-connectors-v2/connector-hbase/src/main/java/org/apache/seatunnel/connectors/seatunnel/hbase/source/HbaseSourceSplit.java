@@ -15,21 +15,26 @@
  * limitations under the License.
  */
 
-package org.apache.seatunnel.example.spark.v2;
+package org.apache.seatunnel.connectors.seatunnel.hbase.source;
 
-import org.apache.seatunnel.core.starter.exception.CommandException;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+import org.apache.seatunnel.api.source.SourceSplit;
 
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
 
-public class SeaTunnelApiExample {
+@ToString
+@AllArgsConstructor
+public class HbaseSourceSplit implements SourceSplit {
 
-    public static void main(String[] args)
-            throws FileNotFoundException, URISyntaxException, CommandException {
-        String mysqlPath="/examples/mysql_to_mysql.conf";
-        String hbasePath="/examples/hbase_console.conf";
-        String fakePath="/examples/fake_to_console.conf";
-        String configurePath = args.length > 0 ? args[0] : hbasePath;
-        ExampleUtils.builder(configurePath);
+    private static final long serialVersionUID = -1L;
+
+    private String splitId;
+
+
+
+    @Override
+    public String splitId() {
+        return splitId;
     }
 }

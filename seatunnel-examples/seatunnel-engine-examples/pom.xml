@@ -66,5 +66,12 @@
             <artifactId>connector-assert</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.seatunnel</groupId>
+            <artifactId>connector-hbase</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

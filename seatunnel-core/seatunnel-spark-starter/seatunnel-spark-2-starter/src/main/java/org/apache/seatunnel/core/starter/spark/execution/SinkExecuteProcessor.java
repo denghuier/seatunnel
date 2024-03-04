@@ -51,7 +51,7 @@ public class SinkExecuteProcessor
             JobContext jobContext,
             List<? extends Config> pluginConfigs) {
         super(sparkRuntimeEnvironment, jobContext, pluginConfigs);
-    }
+     }
 
     @Override
     protected List<SeaTunnelSink<?, ?, ?, ?>> initializePlugins(

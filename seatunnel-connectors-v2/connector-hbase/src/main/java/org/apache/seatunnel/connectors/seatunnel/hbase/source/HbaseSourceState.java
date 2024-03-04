@@ -15,21 +15,18 @@
  * limitations under the License.
  */
 
-package org.apache.seatunnel.example.spark.v2;
+package org.apache.seatunnel.connectors.seatunnel.hbase.source;
 
-import org.apache.seatunnel.core.starter.exception.CommandException;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-public class SeaTunnelApiExample {
-
-    public static void main(String[] args)
-            throws FileNotFoundException, URISyntaxException, CommandException {
-        String mysqlPath="/examples/mysql_to_mysql.conf";
-        String hbasePath="/examples/hbase_console.conf";
-        String fakePath="/examples/fake_to_console.conf";
-        String configurePath = args.length > 0 ? args[0] : hbasePath;
-        ExampleUtils.builder(configurePath);
-    }
+@AllArgsConstructor
+@Getter
+public class HbaseSourceState implements Serializable {
+    private boolean shouldEnumerate;
+    private Map<Integer, List<HbaseSourceSplit>> pendingSplit;
 }
